@@ -1,0 +1,105 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{amssymb}
+\usepackage{tikz} % nur falls du Schnittmarken willst
+\pagestyle{empty}
+
+% Arial-Ersatz für pdfLaTeX:
+\usepackage{tgheros}                 % TeX Gyre Heros (= Helvetica/Arial-ähnlich)
+\renewcommand{\familydefault}{\sfdefault} % gesamte Schrift: Sans (Heros)
+
+% Überschriften-Makro: fett setzen
+\newcommand{\hdr}[1]{{\sffamily\bfseries #1}}
+
+
+% --- Karten-Parameter ---
+\newcommand*\cardW{85.60mm}
+\newcommand*\cardH{53.98mm}
+\newcommand*\FirstColFracNum{48}  % 48/100 = 0.48
+\newcommand*\FirstColFracDen{100}
+\newif\ifcropmarks
+\cropmarksfalse
+
+% --- Längen einmal global ---
+\newlength{\wA}\newlength{\wB}
+\newlength{\wName}\newlength{\wMonat}
+\newlength{\hRowTop}\newlength{\hBanner}
+\newlength{\hHead}\newlength{\hData}
+
+% --- Tabellenspalten einmal global ---
+\newcolumntype{M}{>{\raggedright\arraybackslash}m{\wA}}
+\newcolumntype{S}{>{\centering \arraybackslash}m{\wB}}
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1}
+
+% --- Karten-Makro ---
+\newcommand{\Card}[2]{% #1=Name, #2=Monat
+  % Breiten
+  \setlength{\wA}{\cardW*\FirstColFracNum/\FirstColFracDen}
+  \setlength{\wB}{(\cardW-\wA)/4}
+  \setlength{\wName}{\wA+2\wB}
+  \setlength{\wMonat}{2\wB}
+  % Höhen
+  \setlength{\hRowTop}{7mm}
+  \setlength{\hBanner}{10mm}
+  \setlength{\hHead}{7mm}
+  \setlength{\hData}{\cardH-\hRowTop-\hBanner-\hHead}
+  \setlength{\hData}{\hData/6}
+
+  \begin{minipage}[t][\cardH][t]{\cardW}
+    \begin{tabular}{|M|S|S|S|S|}
+      \hline
+      \multicolumn{3}{|l|}{%
+        \parbox[c][\hRowTop][c]{\wName}{\raggedright \textbf{Name: }
+          \ifx\relax#1\relax\hrulefill\else #1\fi}%
+      } &
+      \multicolumn{2}{l|}{%
+        \parbox[c][\hRowTop][c]{\wMonat}{\raggedright \textbf{Monat: }
+          \ifx\relax#2\relax \_\_/\_\_ \else #2 \fi}%
+      }\\ \hline
+
+      \multicolumn{5}{|c|}{%
+        \parbox[c][\hBanner][c]{\cardW}{\centering \Large \textbf{Übungskarte}}%
+      }\\ \hline
+
+      \parbox[c][\hHead][c]{\wA}{\centering \textbf{Modul}} &
+      \parbox[c][\hHead][c]{\wB}{\centering \textbf{W1}} &
+      \parbox[c][\hHead][c]{\wB}{\centering \textbf{W2}} &
+      \parbox[c][\hHead][c]{\wB}{\centering \textbf{W3}} &
+      \parbox[c][\hHead][c]{\wB}{\centering \textbf{W4}} \\ \hline
+
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+      \parbox[c][\hData][c]{\wA}{\textbf{ }} & $\square$ & $\square$ & $\square$ & $\square$ \\ \hline
+    \end{tabular}
+
+    \ifcropmarks
+      \begin{tikzpicture}[remember picture,overlay]
+        \draw[line width=0.2pt]
+          (0,0)--(0,3mm) (0,0)--(3mm,0)
+          (\cardW,0)--(\cardW-3mm,0) (\cardW,0)--(\cardW,3mm)
+          (0,\cardH)--(0,\cardH-3mm) (0,\cardH)--(3mm,\cardH)
+          (\cardW,\cardH)--(\cardW-3mm,\cardH) (\cardW,\cardH)--(\cardW,\cardH-3mm);
+      \end{tikzpicture}
+    \fi
+  \end{minipage}%
+}
+
+\begin{document}
+\vspace*{\fill}
+\begin{center}
+  % Optional: Namen/Monat direkt einsetzen
+  \Card{ }{ }\\[4mm] % z.B. \Card{Max Muster}{10/25}
+  \Card{ }{ }\\[4mm] 
+  \Card{ }{ }\\[4mm] 
+  \Card{ }{ }\\[4mm] 
+\end{center}
+\vspace*{\fill}
+\end{document}
