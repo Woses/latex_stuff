@@ -1,0 +1,28 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[margin=10mm]{geometry}
+\usepackage{qrcode}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{lmodern}
+
+% Link einmal definieren
+%\newcommand{\DriveLink}{https://drive.google.com/drive/folders/1Pqqn5CicX540Pdtz4d6UKSQVwXJDEsOY?usp=sharing}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+  {\fontsize{50}{84}\texttt{\textbf{ SSID:}}\\[5mm] 
+  \fontsize{65}{84}\texttt{\textbf{Wifi-SSID}}}\\[1cm]  % große Überschrift mit Abstand
+  % QR-Code sehr groß, fast seitenfüllend
+  \item \qrcode[height=170mm]{WIFI:T:WPA;S:Wifi-SSID;P:password;;}\\[20mm]
+  \item \fontsize{50}{84}\texttt{\textbf{ Passwort:}}\\[5mm]
+  \fontsize{57}{84}\texttt{\textbf{password}}\\[20mm]
+\end{center}
+
+\end{document}
+
+
+
+\begin{center}
+
+\end{center}
