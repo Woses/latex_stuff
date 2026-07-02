@@ -1,0 +1,226 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+% ====== Encoding und Sprache ======
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+% ====== Layout und Geometrie ======
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    headheight=20pt,
+    headsep=10pt
+]{geometry}
+
+% ====== Typographie ======
+\usepackage{mathptmx}          % Times New Roman Schriftart
+\usepackage{microtype}         % Mikrotypographie für bessere Lesbarkeit
+\usepackage[hidelinks]{hyperref} % Hyperlinks ohne farbliche Markierung
+
+% ====== Mathematik ======
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% ====== Grafiken und Farben ======
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+
+% ====== Tabellen ======
+\usepackage{booktabs}          % Professionelle Tabellenlinien
+\usepackage{array}
+
+% ====== Listen ======
+\usepackage{enumitem}
+\setlist[itemize]{left=0pt}
+\setlist[enumerate]{left=0pt}
+
+% ====== Kopf- und Fußzeile ======
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ====== Literaturverzeichnis ======
+\usepackage[
+    style=ieee,                % oder: authoryear, numeric, alphabetic
+    backend=biber,
+    sorting=nty
+]{biblatex}
+\addbibresource{references.bib}
+
+% ====== Abstände ======
+\setlength{\parindent}{0pt}    % Keine Einrückung am Absatzanfang
+\setlength{\parskip}{6pt}       % Abstand zwischen Absätzen
+
+% ====== Sektionen formatieren ======
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{\thesection.}{1em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries}{\thesubsection.}{0.8em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection.}{0.5em}{}
+
+% ====== Abstract formatieren ======
+\renewenvironment{abstract}{%
+    \section*{Zusammenfassung}
+    \small
+}{%
+    \normalsize
+}
+
+% ====== Dokumentinformationen ======
+\title{
+    \textbf{Projektbericht zum Projekt COMPARE (ForMiCa)}\\
+    \vspace{0.5cm}
+    {\large Beitrag zur Weiterentwicklung digitaler Evaluations- und Analysewerkzeuge für die Hochschullehre}
+}
+
+\author{
+    \textbf{Timo Mansfeld}\\
+    Hochschule Bonn-Rhein-Sieg\\
+    \texttt{timo.mansfeld@smail.inf.h-brs.de}
+}
+
+\date{\today}
+
+% ====== Dokument ======
+\begin{document}
+
+% --- Titelseite ---
+\maketitle
+
+% --- Zusammenfassung ---
+\begin{abstract}
+    Der Bericht dokumentiert einen Teilaspekt meiner Arbeit im Projekt COMPARE. Durch eine Kombination aus wissenschaftlicher Konzeption, iterativer Pilotierung und technischer Umsetzung entstand ein modernes Evaluationsinstrument, das eine hohe Benutzerfreundlichkeit mit wissenschaftlich fundierter Datenerhebung und Live-Analyse verbindet. Der Fokus liegt auf dem Mehrwert für die Hochschullehre durch verbesserte Evaluationsmethoden und echtzeit-unterstützte Lehrverbesserungen.
+\end{abstract}
+
+% --- Sperrvermerk (optional) ---
+% \section*{Sperrvermerk}
+% Dieser Bericht ist vertraulich und darf nicht ohne Genehmigung verbreitet werden.
+
+% --- Inhaltsverzeichnis ---
+\newpage
+\tableofcontents
+\newpage
+
+% ====== INHALT DES BERICHTS ======
+
+\section{Einleitung}
+
+Im Rahmen des Projekts COMPARE der ForMiCa-Gruppe war ich an der Entwicklung und Konzeption einer innovativen Vergleichsevaluation beteiligt. Das Ziel war die Schaffung eines Evaluationsinstruments, das parallel zur Standard-Evaluation läuft und neue Möglichkeiten zur kontinuierlichen Überwachung und Verbesserung der Lehre eröffnet.
+
+Der Bericht dokumentiert einen Teilaspekt meiner Tätigkeit im Projekt COMPARE: von der wissenschaftlichen Recherche bestehender Evaluationsverfahren über die konzeptionelle Entwicklung und umfangreiche Pilotierung bis hin zur technischen Umsetzung einer modernen Webplattform. Besonderes Augenmerk liegt dabei auf der Verknüpfung von Forschung und Praxis sowie der Entwicklung eines benutzerfreundlichen Systems, das wissenschaftliche Qualität mit hoher Bedienbarkeit verbindet.
+
+\section{Wissenschaftliche Konzeption und Entwicklung}
+
+\subsection{Recherche und theoretische Grundlagen}
+
+Der Entwicklungsprozess begann vor etwa zwei Jahren mit einer umfassenden Analyse bestehender Lehrveranstaltungsevaluationen und wissenschaftlicher Forschung zur Fragebogenentwicklung. Ziel war die Identifikation von Best Practices und Standards zur Entwicklung valider, reliabel und aussagekräftiger Evaluationsinstrumente.
+
+Untersucht wurden:
+
+\begin{itemize}
+    \item Anerkannte Evaluation Standards und Richtlinien, unter anderem die Standards der DEval
+    \item Etablierte psychologische Instrumente wie der SCL-90 zur Erfassung psychischer Belastung
+    \item Forschung zu Antwortverhalten und Datenqualität
+    \item Strategien zur Formulierung verständlicher Fragen
+    \item Einflussfaktoren auf die Teilnahmebereitschaft
+\end{itemize}
+
+Die DEval-Standards dienten als Orientierungsrahmen, wurden aber nicht ungeprüft übernommen: Die Testumfragen zeigten, dass in vielen Fällen abweichende Fragestellungen besser funktionierten und die Teilnahmebereitschaft höher war.
+
+Diese Recherche bildete die wissenschaftliche Grundlage für alle nachfolgenden Entwicklungsschritte.
+
+\subsection{Konzeptentwicklung und iterative Verbesserung}
+
+Parallel zur Recherche entstanden erste Konzepte und Mockups. Allerdings war dieser Prozess nicht linear, sondern iterativ: Basierend auf Auswertungen von Testumfragen, Rückmeldungen aus Gruppenmeetings der ForMiCa-Gruppe und Erkenntnissen aus der regulären Lehrveranstaltungsevaluation wurde das Konzept kontinuierlich überarbeitet und verbessert.
+
+Die Testumfragen dienten nicht nur der Fragebogenentwicklung, sondern ebenso der Untersuchung des gesamten Nutzungserlebnisses:
+
+\begin{itemize}
+    \item Welche Gestaltungskonzepte werden als intuitiv wahrgenommen?
+    \item Welche Fragetypen und Antwortformate bevorzugen Studierende?
+    \item Wie lässt sich die Bereitschaft zur Teilnahme erhöhen?
+    \item Welche Designelemente, Navigationskonzepte und spielerischen Elemente motivieren zur Teilnahme?
+\end{itemize}
+Darüber hinaus zeigte sich, dass kurze, gezielte Abfragen die Akzeptanz deutlich steigern: Statt großer E-Mail-Formulare mit vielen Fragen wird jede Runde auf wenige Vergleiche reduziert. Dies verhindert, dass Studierende die Nachricht schnell wegklicken, und macht die Teilnahme weniger zeitaufwändig.
+
+Der Fragebogen ist in vier sich teilende Semesterabschnitte gegliedert: Anfang, Mitte, Ende und die Phase vor sowie nach Klausuren. Diese Abschnitte überlappen jeweils um mehrere Wochen, sodass den Studierenden stets thematisch passende Fragen gestellt werden. Insgesamt sind 40 Fragen vorgesehen, von denen pro Abschnitt maximal sechs aktiv angeboten werden. Damit bleibt die Evaluation überschaubar und wird nicht als zusätzliche Arbeit empfunden.
+Diese Erkenntnisse flossen unmittelbar in die Weiterentwicklung des Konzepts ein.
+
+\subsection{Technische Umsetzung}
+
+Die erste Version der Webplattform ist seit etwa 2--3 Monaten online und befindet sich derzeit in einer erweiterten Testphase. Sie wird kontinuierlich mit Nutzer-Feedback und Fragen aus der ForMiCa-Gruppe ergänzt und verfeinert. Aktuelle Anpassungen sind vorwiegend optischer und visueller Natur.
+
+Die Plattform ist derzeit für etwa 50--60 Personen zugänglich und wird mit ausgewählten Studierenden getestet. Geplant ist ein größeres Rollout für die Erstsemester ab Oktober mit dem Ziel, die Vergleichsevaluation dann auch hochschulweit nutzen zu können.
+
+\section{Innovation: Kontinuierliche Evaluation mit Live-Auswertung}
+
+Ein wesentliches Innovationsmerkmal der entwickelten Vergleichsevaluation ist das Konzept der kontinuierlichen Erhebung über das gesamte Semester verteilt:
+
+\begin{itemize}
+    \item \textbf{Zeitpunkte:} Statt eines einzelnen Evaluationszeitpunkts werden Studierende zu drei zufällig verteilten Zeitpunkten im Semester befragt.
+    \item \textbf{Live-Analyse:} Jede neue Antwort wird unmittelbar mit bisherigen Ergebnissen verglichen.
+    \item \textbf{Referenzwerte:} Die Ergebnisse werden automatisch mit Gruppenreferenzwerten (R-Werte) der letzten Befragungen verglichen.
+    \item \textbf{Veränderungserkennung:} Durch den kontinuierlichen Vergleich lassen sich Veränderungen und Trends in den Daten schnell und zuverlässig erkennen.
+\end{itemize}
+
+Die Befragung erfolgt nicht in einem einzigen großen Block, sondern als Serie kurzer Vergleiche. Pro Zugriff werden bis zu 15 Vergleichsfragen gestellt; nach der ersten beantworteten Frage können Studierende im Anschluss weitere Fragen aus dem aktuellen Pool wählen. Dieses Konzept macht die Teilnahme schneller und motiviert dazu, weitere Fragen freiwillig zu beantworten.
+
+Der Ablauf der Vergleiche ist bewusst nutzerfreundlich gestaltet: Die Studierenden wählen aus zwei Modulen, die zuvor basierend auf ihrem Studiengang und Semester gefiltert wurden, das passendere Modul aus. Falls bereits frühere Umfragen vorliegen, wird eine Vorauswahl angeboten, die bestätigt oder geändert werden kann. Übersprungenen Vergleiche werden nicht gewertet.
+
+Im letzten Semester wurden beispielsweise zum Themenbereich Klausurphase Fragen eingesetzt wie:
+
+\begin{itemize}
+    \item Welche Klausur bildet berufliche Probleme besser ab?
+    \item Welche Klausur spiegelt die Inhalte der Lehrveranstaltung besser wider?
+    \item Welche Klausur hatte einen angemesseneren Bearbeitungszeitraum?
+    \item Bei welcher Klausur waren die Aufgaben verständlicher formuliert?
+    \item Welche Klausur wurde fairer benotet?
+    \item Für welche Klausur hast du mehr gelernt?
+\end{itemize}
+
+Diese Gestaltung minimiert die Belastung der Studierenden und fördert zugleich die Teilnahmebereitschaft. Gleichzeitig lassen sich mit den Vergleichen präzise Aussagen zur Wahrnehmung von Lehr- und Prüfungsformaten treffen.
+
+Dieses System ermöglicht es Lehrenden, Veränderungen in der Wahrnehmung der Studienerfahrung nahezu in Echtzeit zu erkennen und entsprechend reagieren zu können.
+
+\section{Nutzen für Lehre und Forschung}
+
+Die entwickelte Vergleichsevaluation bietet mehrere Vorteile für die Hochschullehre:
+
+\begin{itemize}
+    \item \textbf{Verbesserte Datenqualität:} Durch benutzerfreundliches Design und iterative Optimierung wird eine höhere Beteiligung und bessere Antwortqualität erreicht. Studierende konnten die Umfrage ohne große Erklärung selbst verstehen.
+    \item \textbf{Wissenschaftliche Fundierung:} Das Instrument basiert auf etablierten Evaluationstandards und psychologischen Methoden.
+    \item \textbf{Echtzeit-Feedback:} Lehrende erhalten schnell Rückmeldungen über die Wahrnehmung ihrer Lehre und können zeitnah reagieren.
+    \item \textbf{Kontinuierliche Verbesserung:} Durch die verteilte Erhebung über das Semester wird nicht nur ein Snapshot der Lehre erfasst, sondern deren Entwicklung verfolgt.
+\end{itemize}
+
+Die neue Evaluation ist als Ergänzung zur Standard-Evaluation konzipiert und soll parallel betrieben werden. Dadurch lassen sich neue Erkenntnisse gewinnen, ohne bestehende Verfahren zu ersetzen.
+
+\section{Ausblick}
+
+Die Vergleichsevaluation befindet sich aktuell noch in der Testphase. Nach erfolgreicher Erprobung und weiterer Verfeinerung basierend auf studentischem Feedback könnte das System ab Oktober für die neuen Erstsemester eingeführt werden. Mittelfristig ist das Ziel, die Vergleichsevaluation hochschulweit als Bestandteil des Evaluationsportfolios etablieren zu können.
+
+Zukünftig werden auch die Standard-Evaluationen mit neuen Fragestellungen weiterentwickelt. Diese Weiterentwicklung bezieht Erfahrungen aus den letzten Jahren, die neue Vergleichsevaluation, unsere Auswertungen, Publikationen und etablierte Forschungen wie R-SCL-90 sowie weitere Top-Evaluationsansätze mit ein.
+
+Das Konzept der kontinuierlichen Evaluation mit Live-Analyse eröffnet perspektivisch auch weitere Möglichkeiten: Langfristig könnte das System auch auf andere Aspekte des Studierenderlebens erweitert oder mit weiteren Erhebungsinstrumenten kombiniert werden.
+
+% ====== REFERENZEN ======
+
+\newpage
+\printbibliography
+
+% ====== ANHANG (optional) ======
+
+% \newpage
+% \appendix
+% \section{Zusätzliche Daten}
+% Hier können Sie zusätzliche Materialien einfügen.
+
+\end{document}
